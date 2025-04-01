@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, desktop, initial-scale=1.0">
+    <title>Movie Booking App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .movie-poster {
+            width: 100px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Movie Booking App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#booking">Booking</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="home">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="Movie Poster">
+                <h5>Movie 1</h5>
+            </div>
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="Movie Poster">
+                <h5>Movie 2</h5>
+            </div>
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="Movie Poster">
+                <h5>Movie 3</h5>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="booking" style="display: none;">
+        <form>
+            <div class="form-group">
+                <label for="movie">Select Movie:</label>
+                <select class="form-control" id="movie">
+                    <option>Movie 1</option>
+                    <option>Movie 2</option>
+                    <option>Movie 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+                <label for="showtime">Select Showtime:</label>
+                <select class="form-control" id="showtime">
+                    <option>10:00 AM</option>
+                    <option>1:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>7:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tickets">Number of Tickets:</label
+                <input type="number" class="form-control" id="tickets" min="1">
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingSummary">Book Now</button>
+        </form>
+    </div>
+    <div class="modal" id="bookingSummary" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Booking Summary</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="summary"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Confirm Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#navbarSupportedContent li").click(function(){
+                var id = $(this).find("a").attr("href");
+                $("div.container").hide();
+                $(id).show();
+            });
+            $("#bookingSummary").on("show.bs.modal", function(event){
+                var movie = $("#movie").val();
+                var date = $("#date").val();
+                var showtime = $("#showtime").val();
+                var tickets = $("#tickets").val();
+                var summary = "Movie: " + movie + "<br>Date: " + date + "<br>Showtime: " + showtime + "<br>Tickets: " + tickets;
+                $(this).find("#summary").html(summary);
+            });
+        });
+    </script>
+</body>
+</html>
