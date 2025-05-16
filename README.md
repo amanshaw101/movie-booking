@@ -57,21 +57,6 @@ npm start
 
 The frontend application will start on http://localhost:3000
 
-## Environment Variables
-
-The application uses the following environment variables:
-
-- TMDB API Key: `c6b0d76711aafd7e790051984c15dcac`
-- Database URL: `jdbc:mysql://localhost:3306/random`
-- Database Username: `root`
-- Database Password: `Password`
-
-## API Endpoints
-
-- `GET /api/bookings` - Get all bookings
-- `GET /api/bookings/{id}` - Get booking by ID
-- `POST /api/bookings` - Create a new booking
-
 ## Technologies Used
 
 - Frontend:
